@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="mr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>जेरुषा</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"IBM Plex Sans Devanagari"', '"IBM Plex Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Justified text without broken words across screens */
+    .document-body {
+      text-align: justify;
+      text-justify: inter-word;
+      word-break: keep-all;
+      hyphens: none;
+      overflow-wrap: break-word;
+      line-height: 1.95;
+    }
+
+    /* SVG Subtle Animations */
+    @keyframes floatPetal {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-8px) rotate(6deg);
+      }
+    }
+
+    @keyframes gentlePulse {
+      0%, 100% {
+        opacity: 0.82;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.025);
+      }
+    }
+
+    @keyframes featherShimmer {
+      0%, 100% {
+        filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.45));
+      }
+      50% {
+        filter: drop-shadow(0 0 16px rgba(234, 179, 8, 0.85));
+      }
+    }
+
+    .anim-petal-1 { animation: floatPetal 5s ease-in-out infinite; }
+    .anim-petal-2 { animation: floatPetal 6.5s ease-in-out infinite 1s; }
+    .anim-petal-3 { animation: floatPetal 4.8s ease-in-out infinite 2s; }
+    .anim-pulse-glow { animation: gentlePulse 4s ease-in-out infinite; }
+    .anim-quill { animation: featherShimmer 3.5s ease-in-out infinite; }
+
+    .toast-transition {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+  </style>
+</head>
+<body class="bg-stone-100 text-stone-900 dark:bg-stone-950 dark:text-stone-100 transition-colors duration-300 min-h-screen flex flex-col items-center py-6 px-4 sm:px-6 lg:px-8 selection:bg-amber-200 selection:text-stone-900 dark:selection:bg-amber-900 dark:selection:text-amber-100">
+
+  <div class="fixed top-4 right-4 z-50 flex items-center gap-2 bg-stone-50/90 dark:bg-stone-900/90 backdrop-blur-md border border-stone-200/80 dark:border-stone-800/80 rounded-full p-1.5 shadow-lg shadow-stone-400/20 dark:shadow-black/40">
+    <!-- Share Button -->
+    <button id="shareButton" type="button" aria-label="शेअर करा" class="p-2.5 rounded-full text-stone-700 dark:text-stone-300 hover:bg-stone-200/70 dark:hover:bg-stone-800 transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-500">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+      </svg>
+    </button>
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" type="button" aria-label="थीम बदला" class="p-2.5 rounded-full text-stone-700 dark:text-stone-300 hover:bg-stone-200/70 dark:hover:bg-stone-800 transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-500">
+      <!-- Sun Icon (for dark mode) -->
+      <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+      <!-- Moon Icon (for light mode) -->
+      <svg id="moonIcon" class="w-5 h-5 block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      </svg>
+    </button>
+  </div>
+
+  <main class="w-full max-w-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-xl dark:shadow-2xl shadow-stone-200/60 dark:shadow-black/70 p-6 sm:p-10 md:p-14 my-auto transition-colors duration-300">
+    <article class="document-body text-[1.075rem] sm:text-[1.175rem] text-stone-850 dark:text-stone-200 tracking-normal space-y-6">
+
+      <!-- Document Title & Subtitle without literal asterisks -->
+      <div>
+        <div class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-amber-950 dark:text-amber-300 mb-2">
+          जेरुषा
+        </div>
+        <p class="text-stone-600 dark:text-stone-400 text-lg sm:text-xl font-normal italic">
+          नियतीने जणू मराठी भाषेचा ताबा देऊनच त्यांना या जगात पाठवले होते..
+        </p>
+      </div>
+
+      <div class="py-3 flex justify-center w-full select-none" aria-hidden="true">
+        <div class="w-full max-w-xl rounded-2xl overflow-hidden shadow-inner border border-amber-200/60 dark:border-amber-950/70 bg-gradient-to-br from-amber-50/70 via-stone-50 to-orange-50/40 dark:from-stone-950 dark:via-stone-900 dark:to-stone-950 p-3 sm:p-5">
+          <svg viewBox="0 0 720 420" class="w-full h-auto drop-shadow-md" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.32" />
+                <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.12" />
+                <stop offset="100%" stop-color="#d97706" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="bookGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fffbeb" />
+                <stop offset="50%" stop-color="#fef3c7" />
+                <stop offset="100%" stop-color="#fde68a" />
+              </linearGradient>
+              <linearGradient id="goldRibbon" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#b45309" />
+                <stop offset="50%" stop-color="#f59e0b" />
+                <stop offset="100%" stop-color="#d97706" />
+              </linearGradient>
+              <linearGradient id="quillGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#d97706" />
+                <stop offset="40%" stop-color="#f59e0b" />
+                <stop offset="80%" stop-color="#fef08a" />
+                <stop offset="100%" stop-color="#ffffff" />
+              </linearGradient>
+              <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+
+            <!-- Warm radiant halo -->
+            <ellipse cx="360" cy="210" rx="300" ry="180" fill="url(#bgGlow)" class="anim-pulse-glow" />
+
+            <!-- Heritage Star of David subtle seal -->
+            <g opacity="0.15" stroke="#d97706" stroke-width="1.8">
+              <polygon points="360,70 425,185 295,185" />
+              <polygon points="360,225 425,110 295,110" />
+              <circle cx="360" cy="148" r="75" stroke="#f59e0b" stroke-dasharray="3 3" />
+            </g>
+
+            <!-- Classical Grantha (Books of Marathi Grammar & Orthography) -->
+            <g transform="translate(0, 15)">
+              <path d="M160,310 C240,285 330,290 360,305 C390,290 480,285 560,310 L550,335 C475,312 390,318 360,330 C330,318 245,312 170,335 Z" fill="#92400e" opacity="0.9" />
+              <path d="M165,305 C242,282 330,287 360,300 C390,287 478,282 555,305 L548,225 C474,204 390,210 360,222 C330,210 246,204 172,225 Z" fill="url(#bookGrad)" stroke="#d97706" stroke-width="1.5" />
+              
+              <!-- Left Leaf Book Pages -->
+              <path d="M172,225 C246,204 330,210 360,222 L360,298 C330,286 244,281 167,302 Z" fill="#fffef7" />
+              <!-- Right Leaf Book Pages -->
+              <path d="M360,222 C390,210 474,204 548,225 L553,302 C476,281 390,286 360,298 Z" fill="#fdfbf0" />
+
+              <path d="M360,222 L360,330" stroke="#b45309" stroke-width="2.5" stroke-linecap="round" />
+
+              <!-- Calligraphic Imprints on Pages -->
+              <g opacity="0.75" fill="#78350f" font-family="'IBM Plex Sans Devanagari', serif" font-weight="600">
+                <text x="210" y="240" font-size="13" letter-spacing="3">मराठी शब्दलेखनकोष</text>
+                <text x="200" y="260" font-size="11" letter-spacing="2">अ आ इ ई उ ऊ ऋ ऌ ए ऐ</text>
+                <text x="205" y="278" font-size="11" letter-spacing="2">क ख ग घ ङ च छ ज झ ञ</text>
+                <text x="215" y="294" font-size="10" letter-spacing="2">व्याकरण • शुद्धलेखन • रूप</text>
+              </g>
+
+              <g opacity="0.75" fill="#78350f" font-family="'IBM Plex Sans Devanagari', serif" font-weight="600">
+                <text x="390" y="240" font-size="13" letter-spacing="3">मराठी लेखन मार्गदर्शिका</text>
+                <text x="395" y="260" font-size="11" letter-spacing="2">ट ठ ड ढ ण त थ द ध न</text>
+                <text x="392" y="278" font-size="11" letter-spacing="2">प फ ब भ म य र ल व श</text>
+                <text x="400" y="294" font-size="10" letter-spacing="2">अभिजात • नजाकत • वारसा</text>
+              </g>
+
+              <!-- Golden bookmark ribbon -->
+              <path d="M360,300 Q365,340 380,360 Q395,380 375,395 L360,380 L345,395 Q348,370 360,300 Z" fill="url(#goldRibbon)" />
+            </g>
+
+            <!-- Inkpot -->
+            <g transform="translate(250, 240)">
+              <ellipse cx="25" cy="45" rx="28" ry="12" fill="#0f172a" opacity="0.3" />
+              <path d="M10,25 C5,38 8,48 25,48 C42,48 45,38 40,25 C38,18 34,16 25,16 C16,16 12,18 10,25 Z" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+              <ellipse cx="25" cy="18" rx="14" ry="5" fill="#0284c7" />
+              <ellipse cx="25" cy="17" rx="9" ry="3" fill="#38bdf8" />
+            </g>
+
+            <!-- Golden Feather Quill Pen -->
+            <g class="anim-quill">
+              <path d="M272,255 C295,200 375,115 485,75 C450,110 420,165 370,215 C335,250 285,268 272,255 Z" fill="url(#quillGrad)" stroke="#f59e0b" stroke-width="1.2" />
+              <path d="M285,246 L265,263 L260,267 L266,261 L280,248" fill="#e2e8f0" stroke="#d97706" stroke-width="1.5" />
+              <path d="M272,255 C330,195 400,140 485,75" stroke="#d97706" stroke-width="1.2" stroke-linecap="round" />
+            </g>
+
+            <!-- Blooming Jasmine (यास्मिन) Flowers -->
+            <g transform="translate(425, 120)" class="anim-petal-1">
+              <circle cx="0" cy="0" r="14" fill="#fbbf24" opacity="0.3" filter="url(#glowFilter)" />
+              <ellipse cx="0" cy="-15" rx="5" ry="13" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="14" cy="-5" rx="5" ry="13" transform="rotate(72, 14, -5)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="9" cy="13" rx="5" ry="13" transform="rotate(144, 9, 13)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="-9" cy="13" rx="5" ry="13" transform="rotate(216, -9, 13)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="-14" cy="-5" rx="5" ry="13" transform="rotate(288, -14, -5)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <circle cx="0" cy="0" r="4.5" fill="#f59e0b" />
+              <circle cx="0" cy="0" r="2" fill="#fffbeb" />
+            </g>
+
+            <g transform="translate(470, 80) scale(0.75)" class="anim-petal-2">
+              <ellipse cx="0" cy="-15" rx="5" ry="13" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="14" cy="-5" rx="5" ry="13" transform="rotate(72, 14, -5)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="9" cy="13" rx="5" ry="13" transform="rotate(144, 9, 13)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="-9" cy="13" rx="5" ry="13" transform="rotate(216, -9, 13)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="-14" cy="-5" rx="5" ry="13" transform="rotate(288, -14, -5)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <circle cx="0" cy="0" r="4.5" fill="#f59e0b" />
+            </g>
+
+            <g transform="translate(315, 175) scale(0.8)" class="anim-petal-3">
+              <ellipse cx="0" cy="-14" rx="4.5" ry="12" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="13" cy="-4" rx="4.5" ry="12" transform="rotate(72, 13, -4)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="8" cy="12" rx="4.5" ry="12" transform="rotate(144, 8, 12)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="-8" cy="12" rx="4.5" ry="12" transform="rotate(216, -8, 12)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <ellipse cx="-13" cy="-4" rx="4.5" ry="12" transform="rotate(288, -13, -4)" fill="#ffffff" stroke="#fef08a" stroke-width="1" />
+              <circle cx="0" cy="0" r="4" fill="#f59e0b" />
+            </g>
+
+            <!-- Floating Fragrant Jasmine Petals -->
+            <g class="anim-petal-1">
+              <path d="M495,145 C508,138 518,144 515,155 C512,166 498,162 495,145 Z" fill="#ffffff" stroke="#fde047" stroke-width="0.8" />
+            </g>
+            <g class="anim-petal-2">
+              <path d="M380,100 C392,92 402,98 398,109 C394,120 382,115 380,100 Z" fill="#ffffff" stroke="#fde047" stroke-width="0.8" />
+            </g>
+            <g class="anim-petal-3">
+              <path d="M250,185 C260,178 270,183 268,193 C265,202 254,198 250,185 Z" fill="#ffffff" stroke="#fde047" stroke-width="0.8" />
+            </g>
+
+            <!-- Sparkling Golden Star Particles -->
+            <path d="M490,195 L493,203 L501,206 L493,209 L490,217 L487,209 L479,206 L487,203 Z" fill="#f59e0b" class="anim-pulse-glow" />
+            <path d="M230,135 L232,141 L238,143 L232,145 L230,151 L228,145 L222,143 L228,141 Z" fill="#fbbf24" class="anim-petal-2" />
+            <path d="M380,55 L382,60 L387,62 L382,64 L380,69 L378,64 L373,62 L378,60 Z" fill="#f59e0b" class="anim-petal-1" />
+            <path d="M530,95 L531.5,100 L536.5,101.5 L531.5,103 L530,108 L528.5,103 L523.5,101.5 L528.5,100 Z" fill="#fbbf24" class="anim-petal-3" />
+            <path d="M190,360 C260,345 460,345 530,360" stroke="#d97706" stroke-width="1.2" stroke-dasharray="4 6" opacity="0.6" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Paragraph 1 -->
+      <p>
+        <em class="font-medium text-amber-900 dark:text-amber-300 not-italic">जेरुषा.</em>
+        लौकिकार्थाने म्हणायचे तर जन्माने आणि शेवटपर्यंत ज्यू. मराठी भाषा या विषयात फक्त पदवी आणि पदव्युत्तर शिक्षणच नव्हे तर संशोधन करून वाचस्पतित्व आणि अध्ययन.
+      </p>
+
+      <!-- Paragraph 2 -->
+      <p>
+        व्यक्तिगत आयुष्यात अझीझ अहमद इब्राहिम उर्फ डॅडी शेख यांच्याशी विवाह. त्यानंतर स्वीकारलेली <em class="font-medium text-amber-900 dark:text-amber-300 not-italic">यास्मिन</em> ही ओळख.
+      </p>
+
+      <!-- Paragraph 3 -->
+      <p>
+        आयुष्यभर मराठी भाषा आणि व्याकरण या दोन्हीवर 'यास्मिन'ला जणू यमक जुळवावे इतके 'निस्सिम' प्रेम. मराठी हीच माझी मातृभाषा आहे असे आग्रहपूर्वक आणि ठामपणे सांगणे.
+      </p>
+
+      <!-- Paragraph 4 -->
+      <p>
+        बिनचूक भाषेवरच्या अचूक प्रेमातून 'मराठी लेखन मार्गदर्शिका' व 'मराठी शब्दलेखनकोष' या दोन प्रमाणग्रंथांची निर्मिती.
+      </p>
+
+      <!-- Paragraph 5 (Poetic Quote) -->
+      <p class="pl-3 sm:pl-5 border-l-2 sm:border-l-4 border-amber-500/70 dark:border-amber-500/80 text-stone-900 dark:text-stone-100 font-medium py-1">
+        "लाभले मला ते भाग्य बोलते मराठी, जाहले खरेच धन्य ऐकते मराठी" या 'आम्ही'तून 'मी'त बदलून घेतलेल्या सुरेश भटांच्या ओळी यथार्थ ठरवत लाभलेले शतकोत्तर समृद्ध आयुष्य.
+      </p>
+
+      <!-- Paragraph 6 -->
+      <p>
+        जेरुषा या हिब्रू शब्दाचा अर्थ आहे वारसा किंवा ताबा आणि यास्मिन म्हणजे तर सुगंध, सौंदर्य, डौल, लावण्य, नजाकत, चविष्ट आणि असेच सर्व काही अभिजात!
+      </p>
+
+      <!-- Paragraph 7 -->
+      <p>
+        खरंच, नियतीने जणू मराठी भाषेचा ताबा देऊनच त्यांना या जगात पाठवले होते आणि त्यांनी तिला सर्वार्थाने 'यास्मिन' करून तिची एक समृद्ध 'जेरुषा' मागे ठेवत त्या समाधानाने पुढच्या प्रवासला निघून गेल्या आहेत.
+      </p>
+
+      <!-- Paragraph 8 -->
+      <p>
+        'जेरुषा रूबेन' अर्थात 'यास्मिन शेख'. मराठी भाषेला लाभलेला एक नाजूक अलंकार.
+      </p>
+
+      <!-- Paragraph 9 -->
+      <p class="font-semibold text-amber-950 dark:text-amber-200">
+        खरीखुरी आयडिया ऑफ इंडिया!
+      </p>
+
+      <!-- Elegant ornamental separator replacing the literal asterisks -->
+      <div class="flex items-center justify-center pt-5 pb-2 text-amber-600/70 dark:text-amber-400/60 select-none" aria-hidden="true">
+        <svg class="w-16 h-4" viewBox="0 0 80 16" fill="currentColor">
+          <circle cx="20" cy="8" r="2.5" />
+          <circle cx="40" cy="8" r="4" />
+          <circle cx="60" cy="8" r="2.5" />
+        </svg>
+      </div>
+
+    </article>
+  </main>
+
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2.5 rounded-xl bg-stone-900 text-stone-100 dark:bg-stone-100 dark:text-stone-900 text-sm font-medium shadow-2xl opacity-0 pointer-events-none toast-transition z-50 flex items-center gap-2">
+    <svg class="w-4 h-4 text-amber-400 dark:text-amber-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+    <span id="toastMessage">लिंक कॉपी झाली!</span>
+  </div>
+
+  <script>
+    // Theme Management
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const htmlEl = document.documentElement;
+
+    function applyTheme(isDark) {
+      if (isDark) {
+        htmlEl.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlEl.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('block');
+        moonIcon.classList.add('inline-block');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    const storedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
+      applyTheme(true);
+    } else {
+      applyTheme(false);
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isCurrentlyDark = htmlEl.classList.contains('dark');
+      applyTheme(!isCurrentlyDark);
+    });
+
+    // Toast Notification Helper
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    let toastTimeout = null;
+
+    function showToast(msg) {
+      toastMessage.textContent = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+      }, 2800);
+    }
+
+    // Share Button Handling
+    const shareBtn = document.getElementById('shareButton');
+    shareBtn.addEventListener('click', async () => {
+      const shareData = {
+        title: 'जेरुषा | यास्मिन शेख',
+        text: 'जेरुषा - नियतीने जणू मराठी भाषेचा ताबा देऊनच त्यांना या जगात पाठवले होते..',
+        url: window.location.href,
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            copyToClipboardFallback();
+          }
+        }
+      } else {
+        copyToClipboardFallback();
+      }
+    });
+
+    function copyToClipboardFallback() {
+      try {
+        const tempInput = document.createElement('input');
+        tempInput.value = window.location.href;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        showToast('वेबपेज लिंक कॉपी झाली!');
+      } catch (e) {
+        showToast('शेअर लिंक उपलब्ध आहे.');
+      }
+    }
+  </script>
+</body>
+</html>
