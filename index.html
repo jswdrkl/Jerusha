@@ -6,7 +6,7 @@
   <title>जेरुषा</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:ital,wght@0,300;0,400;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -23,9 +23,14 @@
   <style>
     body {
       font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
+      font-weight: 400;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+
+    * {
+      font-weight: 400 !important;
     }
 
     /* Justified text without broken words across screens */
@@ -36,6 +41,16 @@
       hyphens: none;
       overflow-wrap: break-word;
       line-height: 1.95;
+    }
+
+    /* Centered quote with yellow/gold borders on both sides */
+    .bilateral-quote {
+      text-align: center;
+      border-left: 3px solid #eab308;
+      border-right: 3px solid #eab308;
+      padding: 14px 20px;
+      word-break: keep-all;
+      hyphens: none;
     }
 
     /* SVG Subtle Animations */
@@ -104,12 +119,12 @@
   <main class="w-full max-w-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-xl dark:shadow-2xl shadow-stone-200/60 dark:shadow-black/70 p-6 sm:p-10 md:p-14 my-auto transition-colors duration-300">
     <article class="document-body text-[1.075rem] sm:text-[1.175rem] text-stone-850 dark:text-stone-200 tracking-normal space-y-6">
 
-      <!-- Document Title & Subtitle without literal asterisks -->
-      <div>
-        <div class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-amber-950 dark:text-amber-300 mb-2">
+      <!-- Title & Subtitle: Centered without bold formatting -->
+      <div class="text-center">
+        <div class="text-3xl sm:text-4xl md:text-5xl text-amber-950 dark:text-amber-300 mb-2">
           जेरुषा
         </div>
-        <p class="text-stone-600 dark:text-stone-400 text-lg sm:text-xl font-normal italic">
+        <p class="text-stone-600 dark:text-stone-400 text-lg sm:text-xl italic">
           नियतीने जणू मराठी भाषेचा ताबा देऊनच त्यांना या जगात पाठवले होते..
         </p>
       </div>
@@ -168,14 +183,14 @@
               <path d="M360,222 L360,330" stroke="#b45309" stroke-width="2.5" stroke-linecap="round" />
 
               <!-- Calligraphic Imprints on Pages -->
-              <g opacity="0.75" fill="#78350f" font-family="'IBM Plex Sans Devanagari', serif" font-weight="600">
+              <g opacity="0.75" fill="#78350f" font-family="'IBM Plex Sans Devanagari', serif">
                 <text x="210" y="240" font-size="13" letter-spacing="3">मराठी शब्दलेखनकोष</text>
                 <text x="200" y="260" font-size="11" letter-spacing="2">अ आ इ ई उ ऊ ऋ ऌ ए ऐ</text>
                 <text x="205" y="278" font-size="11" letter-spacing="2">क ख ग घ ङ च छ ज झ ञ</text>
                 <text x="215" y="294" font-size="10" letter-spacing="2">व्याकरण • शुद्धलेखन • रूप</text>
               </g>
 
-              <g opacity="0.75" fill="#78350f" font-family="'IBM Plex Sans Devanagari', serif" font-weight="600">
+              <g opacity="0.75" fill="#78350f" font-family="'IBM Plex Sans Devanagari', serif">
                 <text x="390" y="240" font-size="13" letter-spacing="3">मराठी लेखन मार्गदर्शिका</text>
                 <text x="395" y="260" font-size="11" letter-spacing="2">ट ठ ड ढ ण त थ द ध न</text>
                 <text x="392" y="278" font-size="11" letter-spacing="2">प फ ब भ म य र ल व श</text>
@@ -254,13 +269,13 @@
 
       <!-- Paragraph 1 -->
       <p>
-        <em class="font-medium text-amber-900 dark:text-amber-300 not-italic">जेरुषा.</em>
+        <span class="text-amber-900 dark:text-amber-300">जेरुषा.</span>
         लौकिकार्थाने म्हणायचे तर जन्माने आणि शेवटपर्यंत ज्यू. मराठी भाषा या विषयात फक्त पदवी आणि पदव्युत्तर शिक्षणच नव्हे तर संशोधन करून वाचस्पतित्व आणि अध्ययन.
       </p>
 
       <!-- Paragraph 2 -->
       <p>
-        व्यक्तिगत आयुष्यात अझीझ अहमद इब्राहिम उर्फ डॅडी शेख यांच्याशी विवाह. त्यानंतर स्वीकारलेली <em class="font-medium text-amber-900 dark:text-amber-300 not-italic">यास्मिन</em> ही ओळख.
+        व्यक्तिगत आयुष्यात अझीझ अहमद इब्राहिम उर्फ डॅडी शेख यांच्याशी विवाह. त्यानंतर स्वीकारलेली <span class="text-amber-900 dark:text-amber-300">यास्मिन</span> ही ओळख.
       </p>
 
       <!-- Paragraph 3 -->
@@ -273,10 +288,10 @@
         बिनचूक भाषेवरच्या अचूक प्रेमातून 'मराठी लेखन मार्गदर्शिका' व 'मराठी शब्दलेखनकोष' या दोन प्रमाणग्रंथांची निर्मिती.
       </p>
 
-      <!-- Paragraph 5 (Poetic Quote) -->
-      <p class="pl-3 sm:pl-5 border-l-2 sm:border-l-4 border-amber-500/70 dark:border-amber-500/80 text-stone-900 dark:text-stone-100 font-medium py-1">
+      <!-- Paragraph 5 (Poetic Quote): Centered with yellow borders on both sides -->
+      <div class="bilateral-quote my-4 text-stone-900 dark:text-stone-100">
         "लाभले मला ते भाग्य बोलते मराठी, जाहले खरेच धन्य ऐकते मराठी" या 'आम्ही'तून 'मी'त बदलून घेतलेल्या सुरेश भटांच्या ओळी यथार्थ ठरवत लाभलेले शतकोत्तर समृद्ध आयुष्य.
-      </p>
+      </div>
 
       <!-- Paragraph 6 -->
       <p>
@@ -293,24 +308,15 @@
         'जेरुषा रूबेन' अर्थात 'यास्मिन शेख'. मराठी भाषेला लाभलेला एक नाजूक अलंकार.
       </p>
 
-      <!-- Paragraph 9 -->
-      <p class="font-semibold text-amber-950 dark:text-amber-200">
+      <!-- Paragraph 9: Centered without bold formatting -->
+      <p class="text-center text-amber-950 dark:text-amber-200">
         खरीखुरी आयडिया ऑफ इंडिया!
       </p>
-
-      <!-- Elegant ornamental separator replacing the literal asterisks -->
-      <div class="flex items-center justify-center pt-5 pb-2 text-amber-600/70 dark:text-amber-400/60 select-none" aria-hidden="true">
-        <svg class="w-16 h-4" viewBox="0 0 80 16" fill="currentColor">
-          <circle cx="20" cy="8" r="2.5" />
-          <circle cx="40" cy="8" r="4" />
-          <circle cx="60" cy="8" r="2.5" />
-        </svg>
-      </div>
 
     </article>
   </main>
 
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2.5 rounded-xl bg-stone-900 text-stone-100 dark:bg-stone-100 dark:text-stone-900 text-sm font-medium shadow-2xl opacity-0 pointer-events-none toast-transition z-50 flex items-center gap-2">
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2.5 rounded-xl bg-stone-900 text-stone-100 dark:bg-stone-100 dark:text-stone-900 text-sm shadow-2xl opacity-0 pointer-events-none toast-transition z-50 flex items-center gap-2">
     <svg class="w-4 h-4 text-amber-400 dark:text-amber-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
     </svg>
